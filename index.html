@@ -257,6 +257,27 @@ I love you, I miss you. I love the way you treat me, I love the way you love me.
                 if(item.getBoundingClientRect().top < window.innerHeight * 0.8) item.classList.add('show');
             });
         });
+
+        </style>
+</head>
+<body class="mode-bulan">
+    <canvas id="starfield"></canvas>
+    <div class="bg-sun-glow"></div>
+    <button class="theme-switch" onclick="toggleTheme()">☀️</button>
+
+    <div class="love-letter-icon letter-left" onclick="openLetter('Suki, makasih ya udah jadi bagian paling indah di hidupku selama 2 bulan ini. ❤️')">📩</div>
+    <div class="love-letter-icon letter-right" onclick="openLetter('Jangan pernah capek sama aku ya, I love you the most! 🦀☀️')">📩</div>
+
+    <div class="container">
+        <div id="questionBox" class="card">
+
+            <div class="card">
+                <h3>Digital Coupons for Suki 🎟️</h3>
+                <div class="coupon"><b>🎟️ Kupon Makan Malam Bebas Pilih</b><button onclick="claimCoupon('Makan Malam')">Klaim Kupon</button></div>
+                <div class="coupon"><b>🎟️ Kupon Peluk & Cium Gratis</b><button onclick="claimCoupon('Peluk & Cium')">Klaim Kupon</button></div>
+            </div>
+        </div>
+    </div>
     </script>
 </body>
 </html>
