@@ -7,16 +7,15 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <style>
         :root { 
-            --deep-brown: #3e2723; /* Cokelat Tua */
-            --med-brown: #5d4037; /* Cokelat Medium */
-            --cream: #fff8e1; /* Krem Lembut */
-            --pink-light: #f8bbd0; /* Pink Muda */
-            --pink-bold: #ad1457; /* Pink Tua/Marpun */
-            --red-alert: #d32f2f; /* Merah Mencolok (Tombol No) */
+            --deep-brown: #3e2723;
+            --med-brown: #5d4037;
+            --cream: #fff8e1;
+            --pink-light: #f8bbd0;
+            --pink-bold: #ad1457;
+            --red-alert: #d32f2f;
         }
         
         body { 
-            /* Perubahan Kontras: Background Cokelat Tua Gradasi */
             background: linear-gradient(135deg, var(--deep-brown) 0%, var(--med-brown) 100%);
             color: var(--cream); font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth;
         }
@@ -24,7 +23,6 @@
         .container { display: flex; flex-direction: column; align-items: center; padding: 20px; min-height: 100vh; }
         
         .card { 
-            /* Perubahan Kontras: Card Transparan (Glassmorphism) */
             background: rgba(255, 255, 255, 0.1); 
             padding: 30px; border-radius: 25px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center; 
@@ -32,42 +30,35 @@
             border: 1px solid rgba(255,255,255,0.2); z-index: 10;
         }
 
-        /* PERUBAHAN BESAR: Tombol Lari Section */
-        #questionBox { height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+        #questionBox { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
         #questionBox h2 { color: var(--pink-light); text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-        #questionBox p { color: var(--cream); font-size: 16px; margin-bottom: 20px; }
         
-        .btn-wrap { position: relative; height: 120px; width: 100%; margin-top: 20px; }
+        .btn-wrap { position: relative; height: 120px; width: 100%; margin-top: 20px; display: flex; justify-content: center; align-items: center; }
         
-        /* Tombol Sayang Banget (Lebih Pink) */
         .btn-yes { 
             padding: 15px 30px; background: var(--pink-bold); color: white; border: none; 
             border-radius: 15px; cursor: pointer; font-weight: bold; font-size: 16px;
-            transition: 0.3s; box-shadow: 0 5px 15px rgba(173, 20, 87, 0.4);
+            transition: 0.3s; box-shadow: 0 5px 15px rgba(173, 20, 87, 0.4); z-index: 20;
         }
         .btn-yes:hover { background: #c2185b; transform: scale(1.05); }
 
-        /* PERUBAHAN KONTRAST: Tombol No (Merah Mencolok) */
         #btn-no { 
             position: absolute; background: var(--red-alert); color: white; border: none; 
             border-radius: 12px; cursor: pointer; font-weight: bold; padding: 12px 25px;
             box-shadow: 0 5px 10px rgba(0,0,0,0.2); transition: 0.1s;
         }
 
-        /* Anniversary Counter */
         .counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 15px 0; }
-        .counter-item { background: rgba(255,255,255,0.9); padding: 10px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); color: var(--deep-brown); }
+        .counter-item { background: rgba(255,255,255,0.9); padding: 10px; border-radius: 12px; color: var(--deep-brown); }
         .counter-item span { display: block; font-size: 20px; color: var(--pink-bold); font-weight: bold; }
 
-        /* Timeline */
         .timeline-item { opacity: 0; transform: translateY(30px); transition: 1s; margin-bottom: 40px; text-align: left; }
         .timeline-item.show { opacity: 1; transform: translateY(0); }
         .timeline-item img { width: 100%; border-radius: 20px; border: 5px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-        .timeline-item p { color: var(--cream); font-size: 14px; margin-top: 10px; }
-        .timeline-item b { color: var(--pink-light); }
-
-        h1, h2, h3 { color: var(--pink-light); }
         
+        .coupon { background: #fff; color: #333; padding: 15px; border-radius: 10px; border: 2px dashed var(--pink-bold); margin-bottom: 15px; }
+        .coupon button { background: var(--pink-bold); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px; font-weight: bold; }
+
         #mainContent { display: none; width: 100%; max-width: 500px; }
         .floating { position: fixed; pointer-events: none; animation: fly 4s linear infinite; z-index: 100; opacity: 0; }
         @keyframes fly { 0% { transform: translateY(110vh) rotate(0); opacity:1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity:0; } }
@@ -78,7 +69,7 @@
     <div class="container">
         <div id="questionBox" class="card">
             <h2>Happy 2nd Mensiversary! 🌻</h2>
-            <p>Suki Sukii masih sayang banget kan sama aku? Saran Aku Sih Klik NGGAK :P</p>
+            <p>Suki Sukii masih sayang banget kan sama aku? <br>Saran Aku Sih Klik NGGAK :P</p>
             <div class="btn-wrap">
                 <button class="btn-yes" onclick="happyEnding()">Sayang Banget!</button>
                 <button id="btn-no" onmouseover="moveButton()">Nggak</button>
@@ -99,7 +90,7 @@
 
             <div class="card">
                 <h3>Distance Status 📍</h3>
-                <p style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 15px; border-left: 5px solid #ffb74d; color: var(--cream);">
+                <p style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 15px; border-left: 5px solid #ffb74d;">
                     "Mau berapa KM pun jaraknya, Matahari cuma ada satu, dan dia lagi baca tulisan ini sekarang. ❤️"
                 </p>
             </div>
@@ -107,177 +98,116 @@
             <div class="card">
                 <h3>Special For Sayangku🌻</h3>
                 <div class="timeline-item">
-                    <img src="assets/images/mensive-2/momen1.jpg.jpeg" alt="First Date">
+                    <img src="../assets/images/mensive-2/momen1.jpg.jpeg">
                     <p><b>Pesan:</b> Foto Hanyalah Pemanis..</p>
                 </div>
                 <div class="timeline-item">
-                    <img src="assets/images/mensive-2/momen2.jpg.jpeg" alt="Mensive 2">
-                    <p><b>Pesan dari NayNay:</b> Hi my beautiful love, happy two months! Thank you for being my girlfriend, for everything you’ve put into us, for all your patience, for your feelings, and for every effort you've given to our relationship. I hope we can keep learning to become the best version of us.
+                    <img src="../assets/images/mensive-2/momen2.jpg.jpeg">
+                    <p><b>Hi my beautiful love, happy two months! Thank you for being my girlfriend, for everything you’ve put into us, for all your patience, for your feelings, and for every effort you've given to our relationship. I hope we can keep learning to become the best version of us.
+
+
 
 Please forgive Naynay if I ever make you angry, annoyed, or sad. I never mean to it’s just part of my process of learning and striving to make this relationship even better. I am so happy to be with you, Thank you for loving me Sayangg. I hope we will always love each other, on and on.
 
-I love you, I miss you. I love the way you treat me, I love the way you love me. I love it when you look at me, play with my hair, and pamper me. I also love showering you with affection all the time, and doing everything that you love. I love you. ❤️</p>
+
+
+I love you, I miss you. I love the way you treat me, I love the way you love me. I love it when you look at me, play with my hair, and pamper me. I also love showering you with affection all the time, and doing everything that you love. I love you. ❤️ ❤️</p>
                 </div>
                 <div class="timeline-item">
-                    <img src="assets/images/mensive-2/momen3.jpg.jpeg" alt="Momen 3">
-                    <p>NayNay sayang sekali sama sukii sukii dan mau sayang sayang sukii selamanya 🌻</p>
+                    <img src="../assets/images/mensive-2/momen3.jpg.jpeg">
+                    <p>NayNay sayang sekali sama sukii sukii 🌻</p>
                 </div>
             </div>
 
             <div class="card">
+                <h3>Digital Coupons 🎟️</h3>
+                <div class="coupon"><b>🎟️ Kupon Dinner</b><br><button onclick="claimCoupon('Dinner')">Klaim</button></div>
+                <div class="coupon"><b>🎟️ Kupon Peluk & Cium</b><br><button onclick="claimCoupon('Peluk & Cium')">Klaim</button></div>
+                <div class="coupon"><b>🎟️ Kupon Nonton</b><br><button onclick="claimCoupon('Peluk & Cium')">Klaim</button></div>
+                <div class="coupon"><b>🎟️ Kupon Dudukin Muka Naynay</b><br><button onclick="claimCoupon('Peluk & Cium')">Klaim</button></div>
+            </div>
+
+            <div class="card">
                 <p>I love you the most, Matahariku! ☀️</p>
-                <button class="btn-yes" style="font-size: 14px; padding: 10px 20px;" onclick="window.scrollTo(0,0)">Back to Top</button>
+                <button class="btn-yes" style="font-size: 14px;" onclick="window.scrollTo(0,0)">Back to Top</button>
             </div>
         </div>
     </div>
 
     <audio id="lagu" loop>
-        <source src="assets/music/lagu.mp3.mp3" type="audio/mpeg">
+        <source src="../assets/music/lagu.mp3.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // 2. PERUBAHAN: Tombol No (Lebih Akrobatik)
         function moveButton() {
             const btn = document.getElementById("btn-no");
             const wrap = document.querySelector(".btn-wrap");
-            
-            // Batas pergerakan hanya di dalam area btn-wrap
             const maxX = wrap.offsetWidth - btn.offsetWidth;
             const maxY = wrap.offsetHeight - btn.offsetHeight;
-            
-            const x = Math.random() * maxX;
-            const y = Math.random() * maxY;
-            
-            btn.style.left = x + "px";
-            btn.style.top = y + "px";
+            btn.style.left = Math.random() * maxX + "px";
+            btn.style.top = Math.random() * maxY + "px";
         }
 
-        // PERUBAHAN: Confetti Ikon Personal (Kepiting, Matahari, Hati)
         function happyEnding() {
-            // Suara kembang api
-            const count = 150;
-            const defaults = { origin: { y: 0.7 } };
-
-            function fire(particleRatio, opts) {
-                confetti(Object.assign({}, defaults, opts, {
-                    particleCount: Math.floor(count * particleRatio)
-                }));
-            }
-
-            fire(0.25, { spread: 26, startVelocity: 55, });
-            fire(0.2, { spread: 60, });
-            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-            fire(0.1, { spread: 120, startVelocity: 45, });
-
-            // PERUBAHAN: Munculin ikon pop-up personal
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
             popIcons();
-
             document.getElementById("lagu").play();
-            setTimeout(() => {
-                document.getElementById("questionBox").style.display = "none";
-                document.getElementById("mainContent").style.display = "block";
-                startCounter();
-                startFloating();
-            }, 800);
+            document.getElementById("questionBox").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+            startCounter();
+            startFloating();
         }
 
-        // PERUBAHAN: Fungsi buat meledakin Kepiting & Matahari
         function popIcons() {
-            const wrap = document.querySelector(".btn-wrap");
             const icons = ["🦀", "☀️", "❤️", "💖"];
-            
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 15; i++) {
+                const icon = document.createElement("div");
+                icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                icon.style.position = "fixed";
+                icon.style.left = "50%"; icon.style.top = "50%";
+                icon.style.fontSize = "30px"; icon.style.zIndex = "1000";
+                icon.style.transition = "1s ease-out";
+                document.body.appendChild(icon);
                 setTimeout(() => {
-                    const icon = document.createElement("div");
-                    icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-                    icon.style.position = "absolute";
-                    icon.style.pointerEvents = "none";
-                    
-                    // Posisi awal dari tombol "Yes"
-                    icon.style.left = "50%";
-                    icon.style.top = "50%";
-                    icon.style.transform = "translate(-50%, -50%)";
-                    
-                    // Animasi meledak ke segala arah
-                    const angle = Math.random() * Math.PI * 2;
-                    const velocity = Math.random() * 100 + 50;
-                    const destinationX = Math.cos(angle) * velocity + "px";
-                    const destinationY = Math.sin(angle) * velocity - 150 + "px"; // Sedikit ke atas
-                    
-                    icon.style.transition = "1s ease-out";
-                    icon.style.fontSize = (Math.random() * 20 + 20) + "px";
-                    icon.style.opacity = 1;
-                    icon.style.zIndex = 1000;
-                    
-                    document.body.appendChild(icon);
-                    
-                    // Trigger animasi
-                    setTimeout(() => {
-                        icon.style.transform = `translate(${destinationX}, ${destinationY}) rotate(${Math.random() * 360}deg)`;
-                        icon.style.opacity = 0;
-                    }, 50);
-                    
-                    // Hapus elemen
-                    setTimeout(() => icon.remove(), 1050);
-                }, i * 30);
+                    icon.style.transform = `translate(${(Math.random()-0.5)*400}px, ${(Math.random()-0.5)*400}px)`;
+                    icon.style.opacity = "0";
+                }, 50);
+                setTimeout(() => icon.remove(), 1000);
             }
         }
 
-        // 3. Counter Logic (22 Januari 2026)
         function startCounter() {
             const start = new Date("2026-01-22T00:00:00").getTime();
             setInterval(() => {
-                const now = new Date().getTime();
-                const diff = now - start;
-                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+                const now = new Date().getTime(); const diff = now - start;
+                document.getElementById("days").innerText = Math.floor(diff / (1000*60*60*24));
+                document.getElementById("hours").innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+                document.getElementById("mins").innerText = Math.floor((diff%(1000*60*60))/(1000*60));
+                document.getElementById("secs").innerText = Math.floor((diff%(1000*60))/1000);
             }, 1000);
         }
 
-        // 4. Floating Icons (Sunflower & Heart)
         function startFloating() {
             setInterval(() => {
                 const el = document.createElement("div");
-                const icons = ["🌻", "❤️", "☀️", "💖"];
-                el.innerHTML = icons[Math.floor(Math.random()*icons.length)];
+                el.innerHTML = ["🌻", "❤️", "☀️"][Math.floor(Math.random()*3)];
                 el.className = "floating";
                 el.style.left = Math.random() * 100 + "vw";
-                el.style.fontSize = (Math.random() * 20 + 10) + "px";
+                el.style.fontSize = "20px";
                 document.body.appendChild(el);
                 setTimeout(() => el.remove(), 4000);
             }, 300);
         }
 
-        // Timeline Scroll Effect
+        function claimCoupon(nama) {
+            alert(`🎟️ Kupon ${nama} Berhasil Diklaim!\n\nJangan lupa screenshot dan kirim ke Naynay ya! ❤️`);
+        }
+
         window.addEventListener('scroll', () => {
             document.querySelectorAll('.timeline-item').forEach(item => {
                 if(item.getBoundingClientRect().top < window.innerHeight * 0.8) item.classList.add('show');
             });
         });
-
-        </style>
-</head>
-<body class="mode-bulan">
-    <canvas id="starfield"></canvas>
-    <div class="bg-sun-glow"></div>
-    <button class="theme-switch" onclick="toggleTheme()">☀️</button>
-
-    <div class="love-letter-icon letter-left" onclick="openLetter('Suki, makasih ya udah jadi bagian paling indah di hidupku selama 2 bulan ini. ❤️')">📩</div>
-    <div class="love-letter-icon letter-right" onclick="openLetter('Jangan pernah capek sama aku ya, I love you the most! 🦀☀️')">📩</div>
-
-    <div class="container">
-        <div id="questionBox" class="card">
-
-            <div class="card">
-                <h3>Digital Coupons for Suki 🎟️</h3>
-                <div class="coupon"><b>🎟️ Kupon Makan Malam Bebas Pilih</b><button onclick="claimCoupon('Makan Malam')">Klaim Kupon</button></div>
-                <div class="coupon"><b>🎟️ Kupon Peluk & Cium Gratis</b><button onclick="claimCoupon('Peluk & Cium')">Klaim Kupon</button></div>
-            </div>
-        </div>
-    </div>
     </script>
 </body>
 </html>
