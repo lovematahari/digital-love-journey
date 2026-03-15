@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THR Spesial Untuk Suki ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        :root { 
+            --pink-soft: #fce4ec; 
+            --pink-bold: #ec407a; 
+            --gold: #ffd700;
+            --brown: #5d4037; 
+        }
+        body { 
+            background: linear-gradient(135deg, #fce4ec 0%, #fff3e0 100%);
+            color: var(--brown); font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; scroll-behavior: smooth;
+        }
+        .container { display: flex; flex-direction: column; align-items: center; padding: 20px; min-height: 100vh; }
+        
+        .card { 
+            background: rgba(255, 255, 255, 0.75); padding: 30px; border-radius: 25px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; 
+            max-width: 450px; width: 90%; backdrop-filter: blur(15px); margin: 20px 0;
+            border: 1px solid rgba(255,255,255,0.5); z-index: 10;
+        }
+
+        /* Desain Amplop THR */
+        .thr-envelope {
+            background: var(--pink-bold);
+            border-radius: 15px;
+            padding: 40px 20px;
+            cursor: pointer;
+            transition: 0.5s;
+            border: 4px solid white;
+            box-shadow: 0 15px 35px rgba(236, 64, 122, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .thr-envelope:hover { transform: translateY(-10px) scale(1.02); }
+        .thr-envelope h2 { color: white; margin: 0; font-size: 24px; }
+        .thr-envelope p { color: white; font-size: 14px; opacity: 0.9; }
+
+        .btn-claim {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: var(--gold);
+            color: var(--brown);
+            border: none;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            transition: 0.3s;
+        }
+        .btn-claim:hover { transform: scale(1.05); background: #ffc107; }
+
+        #thr-result { display: none; animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .floating { position: fixed; pointer-events: none; animation: fly 4s linear infinite; z-index: 100; opacity: 0; }
+        @keyframes fly { 0% { transform: translateY(110vh) rotate(0); opacity:1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity:0; } }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h1 style="color: var(--pink-bold);">🌙 Lebaran Bersama NayNay</h1>
+            <p>Hai selamat lebaran pertama bersama NayNay, klik ini untuk THR buat kamu!</p>
+            
+            <div class="thr-envelope" id="envelope" onclick="showTHR()">
+                <h2>✉️ OPEN ME!</h2>
+                <p>Spesial Untuk Suki Sukiii</p>
+            </div>
+
+            <div id="thr-result">
+                <h2 style="margin-top: 20px; color: var(--brown);">Claimed! 💰</h2>
+                <p style="font-size: 14px; line-height: 1.6;">
+                    "Nominal hanyalah pemanis, design landing page ini yang paling berharga karena dibuatnya pakai hatii heheheh..."
+                </p>
+                <div style="background: white; padding: 20px; border-radius: 20px; border: 2px dashed var(--gold); margin: 15px 0;">
+                    <span style="font-size: 12px; color: #888;">JUMLAH THR:</span>
+                    <h1 style="margin: 5px 0; color: #2e7d32;">Rp 500.000</h1> </div>
+                
+                <button class="btn-claim" onclick="processTransfer()">🎁 Claim THR Now</button>
+            </div>
+        </div>
+
+        <div class="card" style="font-size: 12px; opacity: 0.7;">
+            Dibuat dengan HATI❤️ oleh NayNay untuk Suki
+        </div>
+    </div>
+
+    <audio id="lagu" loop>
+        <source src="../assets/music/lagu.mp3.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function showTHR() {
+            // Efek Confetti Emas & Hijau Lebaran
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ffd700', '#4caf50', '#ffffff'] });
+                confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ffd700', '#4caf50', '#ffffff'] });
+                if (Date.now() < end) { requestAnimationFrame(frame); }
+            }());
+
+            document.getElementById('envelope').style.display = 'none';
+            document.getElementById('thr-result').style.display = 'block';
+            document.getElementById('lagu').play();
+            startFloating();
+        }
+
+        function processTransfer() {
+            // Edit link ini dengan link Dana Kaget kamu atau QRIS
+            window.location.href = "https://wa.me/6287768314233?text=Sayang+aku+udah+klaim+THR-nya+ya";
+        }
+
+        function startFloating() {
+            setInterval(() => {
+                const el = document.createElement("div");
+                const icons = ["💰", "🌙", "✨", "💵"];
+                el.innerHTML = icons[Math.floor(Math.random()*icons.length)];
+                el.className = "floating";
+                el.style.left = Math.random() * 100 + "vw";
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 4000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>
